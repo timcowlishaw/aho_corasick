@@ -1,6 +1,8 @@
-require 'rubygems'
+#require 'rubygems'
 require 'bundler/setup'
 require 'rspec/core/rake_task'
+require "rubygems/package_task"
+require "rdoc/task"
 
 task :default => :test
 task :test => :spec
@@ -16,19 +18,6 @@ else
 end
 
 
-require "rubygems"
-require "rubygems/package_task"
-require "rdoc/task"
-
-require "rspec"
-require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new do |t|
-  t.rspec_opts = %w(--format documentation --colour)
-end
-
-
-task :default => ["spec"]
-
 # This builds the actual gem. For details of what all these options
 # mean, and other ones you can add, check the documentation here:
 #
@@ -37,12 +26,12 @@ task :default => ["spec"]
 spec = Gem::Specification.new do |s|
 
   # Change these as appropriate
-  s.name              = "ahocorasick"
+  s.name              = "aho_corasick"
   s.version           = "0.0.1"
   s.summary           = "The Aho-Corasick string-matching algorithm"
   s.author            = "Tim Cowlishaw"
   s.email             = "tim@timcowlishaw.co.uk"
-  s.homepage          = "http://github.com/likely/ahocorasick"
+  s.homepage          = "http://github.com/likely/aho_corasick"
 
   s.has_rdoc          = true
   s.extra_rdoc_files  = %w(README.markdown)

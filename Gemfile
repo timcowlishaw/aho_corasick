@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
-group :test do
+group :development, :test do
+  gem "gem-this"
+  gem  "rake"
   gem "rspec"
 end
