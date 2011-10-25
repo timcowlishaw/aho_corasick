@@ -1,7 +1,7 @@
 class AhoCorasick
-  def initialize(terms)
+  def initialize(*terms)
     @root = TreeNode.new
-    terms.each {|t| unsafe_insert(t)}
+    unsafe_insert(terms)
     create_suffix_links
   end
 
@@ -15,22 +15,24 @@ class AhoCorasick
     return matches
   end
 
-  def insert(str)
-    unsafe_insert(str)
+  def insert(*terms)
+    unsafe_insert(terms)
     create_suffix_links
   end
 
   private
 
-  def unsafe_insert(str)
-    str.each_char.inject(@root) {|node, char| node.child_for(char) }.add_match(str)
+  def unsafe_insert(terms)
+    terms.each do |t|
+      t.each_char.inject(@root) {|node, char| node.child_for(char) }.add_match(t)
+    end
   end
 
   def create_suffix_links
     queue = @root.children.to_a.dup
     while !queue.empty?
       char, node = queue.shift
-      node.suffix = node.parent == @root ? @root : node.parent.suffix.children[char]
+      node.suffix = node.parent == @root ? @root : (node.parent.suffix && node.parent.suffix.children[char])
       node.children.to_a.each do |entry|
         queue.push(entry)
       end
