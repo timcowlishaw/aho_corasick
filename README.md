@@ -13,6 +13,7 @@ matcher.match("How much wood would a woodchuck chuck if a woodchuck could chuck 
 ```
 
 You can insert additional terms into the matcher after instantiation, however each call to insert takes linear time with respect to the total number of terms to be matched against. You can call insert passing multiple terms to mitigate against this:
+
 ```ruby
 matcher.insert("would", "wood")
 matcher.match("How much wood would a woodchuck chuck if a woodchuck could chuck wood.")
