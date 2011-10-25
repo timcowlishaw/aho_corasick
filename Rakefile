@@ -1,22 +1,14 @@
-#require 'rubygems'
 require 'bundler/setup'
-require 'rspec/core/rake_task'
 require "rubygems/package_task"
 require "rdoc/task"
+require 'rake/testtask'
 
 task :default => :test
-task :test => :spec
+task :spec => :test
 
-if !defined?(RSpec)
-  puts "spec targets require RSpec"
-else
-  desc "Run all examples"
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.pattern = 'spec/**/*_spec.rb'
-    t.rspec_opts = ['-cfs']
-  end
+Rake::TestTask.new do |t|
+  t.pattern = "spec/*_spec.rb"
 end
-
 
 # This builds the actual gem. For details of what all these options
 # mean, and other ones you can add, check the documentation here:

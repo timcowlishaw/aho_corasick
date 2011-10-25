@@ -8,10 +8,10 @@ class AhoCorasick
   def match(string)
     matches = []
     node = string.each_char.inject(@root) do |node, char|
-      matches += node.matches
-      node.find(char) || @root
+      matches += node.matches if node
+      (node && node.find(char)) || @root.find(char)
     end
-    matches += node.matches
+    matches += node.matches if node
     return matches
   end
 
