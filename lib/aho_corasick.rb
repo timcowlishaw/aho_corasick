@@ -9,7 +9,7 @@ class AhoCorasick
     matches = []
     node = string.each_char.inject(@root) do |node, char|
       matches += node.matches if node
-      (node && node.find(char)) || @root.find(char)
+      (node && node.find(char.to_sym)) || @root.find(char.to_sym)
     end
     matches += node.matches if node
     return matches
@@ -24,7 +24,7 @@ class AhoCorasick
 
   def unsafe_insert(terms)
     terms.each do |t|
-      t.each_char.inject(@root) {|node, char| node.child_for(char) }.add_match(t)
+      t.each_char.inject(@root) {|node, char| node.child_for(char.to_sym) }.add_match(t)
     end
   end
 
@@ -32,7 +32,7 @@ class AhoCorasick
     queue = @root.children.to_a.dup
     while !queue.empty?
       char, node = queue.shift
-      node.suffix = node.parent == @root ? @root : (node.parent.suffix && node.parent.suffix.children[char])
+      node.suffix = node.parent == @root ? @root : (node.parent.suffix && node.parent.suffix.children[char.to_sym])
       node.children.to_a.each do |entry|
         queue.push(entry)
       end
@@ -52,7 +52,7 @@ class AhoCorasick
 
 
     def find(char)
-      @children[char] || (suffix && suffix.find(char))
+      @children[char.to_sym] || (suffix && suffix.find(char.to_sym))
     end
  
     def add_match(str)
@@ -60,7 +60,7 @@ class AhoCorasick
     end
 
     def child_for(char)
-      @children[char] ||= TreeNode.new(self)
+      @children[char.to_sym] ||= TreeNode.new(self)
     end
 
   end

@@ -27,6 +27,11 @@ describe "AhoCorasick" do
     a.match("abcd").to_set.must_equal ["ab", "cd"].to_set
   end
 
+  it "matches terms directly following a partial match" do
+    a = AhoCorasick.new("abc", "de")
+    a.match("ade").must_include("de")
+  end
+
   it "returns terms added to the matcher after instantiation" do
     a = AhoCorasick.new("ab")
     a.insert("cd", "ef")

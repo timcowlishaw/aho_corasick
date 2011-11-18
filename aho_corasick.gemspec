@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = "aho_corasick"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Cowlishaw"]
-  s.date = "2011-10-25"
+  s.date = "2011-11-18"
   s.email = "tim@timcowlishaw.co.uk"
   s.extra_rdoc_files = ["README.md"]
   s.files = ["Gemfile", "Gemfile.lock", "Rakefile", "README.md", "spec/aho_corasick_spec.rb", "spec/spec_helper.rb", "lib/aho_corasick.rb"]
