@@ -4,5 +4,5 @@ group :development, :test do
   gem "gem-this"
   gem  "rake"
   gem "minitest"
-  #gem "rspec"
+  gem "ruby-debug19"
 end
