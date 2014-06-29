@@ -24,7 +24,11 @@ class AhoCorasick
 
   def unsafe_insert(terms)
     terms.each do |t|
-      t.each_char.inject(@root) {|node, char| node.child_for(char.to_sym) }.add_match(t)
+      if(t.respond_to? :each)
+        unsafe_insert(t)
+      else
+        t.each_char.inject(@root) {|node, char| node.child_for(char.to_sym) }.add_match(t)
+      end
     end
   end
 
