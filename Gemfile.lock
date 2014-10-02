@@ -1,14 +1,22 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    gem-this (0.3.7)
-    minitest (2.6.2)
-    rake (0.9.2)
+    diff-lcs (1.2.5)
+    rspec (3.1.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+    rspec-core (3.1.5)
+      rspec-support (~> 3.1.0)
+    rspec-expectations (3.1.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.1.0)
+    rspec-mocks (3.1.2)
+      rspec-support (~> 3.1.0)
+    rspec-support (3.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  gem-this
-  minitest
-  rake
+  rspec (= 3.1.0)

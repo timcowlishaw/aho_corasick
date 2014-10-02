@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "tim@timcowlishaw.co.uk"
   s.extra_rdoc_files = ["README.md"]
   s.files = ["Gemfile", "Gemfile.lock", "Rakefile", "README.md", "spec/aho_corasick_spec.rb", "spec/spec_helper.rb", "lib/aho_corasick.rb"]
-  s.homepage = "http://github.com/likely/aho_corasick"
+  s.homepage = "http://github.com/timcowlishaw/aho_corasick"
   s.rdoc_options = ["--main", "README.md"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
