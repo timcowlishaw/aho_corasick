@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    aho_corasick (0.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -19,4 +24,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rspec (= 3.1.0)
+  aho_corasick!
+  rspec (>= 3.1.0)

@@ -65,3 +65,4 @@ class AhoCorasick
 
   end
 end
+require 'aho_corasick/version'
