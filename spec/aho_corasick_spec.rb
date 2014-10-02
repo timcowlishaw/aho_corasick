@@ -37,4 +37,15 @@ describe "AhoCorasick" do
     a.insert("cd", "ef")
     expect(a.match("ab12cd12ef").to_set).to eq ["ab", "cd", "ef"].to_set
   end
+
+  it "allows instantiation with an array of terms" do
+    a = AhoCorasick.new(["ab"])
+    expect(a.match("abcd")).to include("ab")
+  end
+
+  it "allows insert with an array of terms" do
+    a = AhoCorasick.new("ab")
+    a.insert(["cd"])
+    expect(a.match("abcd")).to include("cd")
+  end
 end

@@ -1,5 +1,6 @@
 class AhoCorasick
-  def initialize(*terms)
+  def initialize(*args)
+    terms = terms_for(args)
     @root = TreeNode.new
     unsafe_insert(terms)
     create_suffix_links
@@ -15,12 +16,21 @@ class AhoCorasick
     return matches
   end
 
-  def insert(*terms)
+  def insert(*args)
+    terms = terms_for(args)
     unsafe_insert(terms)
     create_suffix_links
   end
 
   private
+
+  def terms_for(args)
+    if args.length == 1 && args[0].is_a?(Array)
+      args[0]
+    else
+      args
+    end
+  end
 
   def unsafe_insert(terms)
     terms.each do |t|
