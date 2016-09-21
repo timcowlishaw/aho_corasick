@@ -48,4 +48,9 @@ describe "AhoCorasick" do
     a.insert(["cd"])
     expect(a.match("abcd")).to include("cd")
   end
+
+  it "returns overlapping matched substrings correctly" do
+    a = AhoCorasick.new(["cd", "d", "abce"])
+    expect(a.match("abcd").to_set).to eq ["cd", "d"].to_set
+  end
 end

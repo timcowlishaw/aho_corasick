@@ -42,7 +42,7 @@ class AhoCorasick
     queue = @root.children.to_a.dup
     while !queue.empty?
       char, node = queue.shift
-      node.suffix = node.parent == @root ? @root : (node.parent.suffix && node.parent.suffix.children[char.to_sym])
+      node.suffix = node.parent == @root ? @root : node.find_suffix(char)
       node.children.to_a.each do |entry|
         queue.push(entry)
       end
@@ -71,6 +71,22 @@ class AhoCorasick
 
     def child_for(char)
       @children[char.to_sym] ||= TreeNode.new(self)
+    end
+
+    def find_suffix(char)
+      failure = parent.suffix
+      while !failure.find(char) && failure.parent
+        failure = failure.suffix
+      end
+
+      suffix = failure.find(char)
+      if suffix
+        @matches.push(*suffix.matches)
+      elsif !failure.parent
+        suffix = failure
+      end
+
+      suffix
     end
 
   end
